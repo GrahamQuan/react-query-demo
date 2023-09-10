@@ -6,6 +6,14 @@ import { heroesApi } from '../network'
 const getData = () => axios.get(heroesApi)
 
 const RqHeroesPage = () => {
+  const onSuccess = (data) => {
+    console.log('onSuccess', data)
+  }
+
+  const onError = (err) => {
+    console.log('onError', err)
+  }
+
   // (1) useQuery(key, fn)
   // const { isLoading, data } = useQuery('super-heroes', getData)
   // (2) useQuery({})
@@ -17,6 +25,8 @@ const RqHeroesPage = () => {
     // retryOnMount: true,
     // refetchOnWindowFocus: true,
     // enabled: true,
+    onSuccess,
+    onError,
   })
 
   console.log({ isLoading, isFetching })
