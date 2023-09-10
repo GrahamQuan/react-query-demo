@@ -7,6 +7,7 @@ import HomePage from './pages/home'
 import TraditionalHeroesPage from './pages/traditional-heroes'
 import RQHeroesPage from './pages/rq-heroes'
 import RqHeroesDetailPage from './pages/rq-heroes-detail'
+import ParallelPage from './pages/parallel'
 
 const queryClient = new QueryClient()
 
@@ -26,6 +27,9 @@ function App() {
               <li>
                 <Link to="/rq-super-heroes">RQ Super Heroes</Link>
               </li>
+              <li>
+                <Link to="/parallel">Parallel</Link>
+              </li>
             </ul>
           </nav>
           <Routes>
@@ -35,6 +39,10 @@ function App() {
             <Route
               path="/rq-super-heroes/:heroId"
               element={<RqHeroesDetailPage />}
+            />
+            <Route
+              path="/parallel"
+              element={<ParallelPage heroIds={[1, 3]} />}
             />
           </Routes>
         </div>
