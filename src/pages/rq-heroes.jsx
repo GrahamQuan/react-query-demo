@@ -9,17 +9,25 @@ const RqHeroesPage = () => {
   // (1) useQuery(key, fn)
   // const { isLoading, data } = useQuery('super-heroes', getData)
   // (2) useQuery({})
-  const { isLoading, data, isError, error } = useQuery({
+  const { isLoading, data, isError, error, isFetching, refetch } = useQuery({
     queryKey: 'super-heroes',
     queryFn: getData,
+    // cacheTime: 5000,
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    // retryOnMount: true,
+    // refetchOnWindowFocus: true,
+    // enabled: true,
   })
 
+  console.log({ isLoading, isFetching })
   if (isLoading) return <h2>loading...</h2>
   if (isError) return <h2>{error?.message}</h2>
 
   return (
     <div>
       <h3>RqHeroesPage</h3>
+      <button onClick={refetch}>refetch</button>
+      <br />
       {data?.data.map((item) => (
         <div key={item.id}>{item.name}</div>
       ))}
