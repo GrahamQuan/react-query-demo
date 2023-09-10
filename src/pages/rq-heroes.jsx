@@ -27,6 +27,13 @@ const RqHeroesPage = () => {
     // enabled: true,
     onSuccess,
     onError,
+    select: (data) => {
+      const formattedData = data.data.map((item) => ({
+        ...item,
+        name: item.name.toUpperCase(),
+      }))
+      return { data: formattedData }
+    },
   })
 
   console.log({ isLoading, isFetching })
