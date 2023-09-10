@@ -9,6 +9,7 @@ import RQHeroesPage from './pages/rq-heroes'
 import RqHeroesDetailPage from './pages/rq-heroes-detail'
 import ParallelPage from './pages/parallel'
 import DependentQueries from './pages/dependent-queries'
+import PaginationPage from './pages/pagination'
 
 const queryClient = new QueryClient()
 
@@ -34,6 +35,9 @@ function App() {
               <li>
                 <Link to="/dependent-queries">DependentQueries</Link>
               </li>
+              <li>
+                <Link to="/pagination">pagination</Link>
+              </li>
             </ul>
           </nav>
           <Routes>
@@ -52,6 +56,7 @@ function App() {
               path="/dependent-queries"
               element={<DependentQueries email="johndoe@example.com" />}
             />
+            <Route path="/pagination" element={<PaginationPage />} />
           </Routes>
         </div>
       </Router>
