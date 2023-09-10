@@ -54,8 +54,14 @@ export function useAddData() {
 
   const mutation = useMutation({
     mutationFn: addData,
-    onSuccess: () => {
-      queryClient.invalidateQueries('super-heroes')
+    onSuccess: (newData) => {
+      // queryClient.invalidateQueries('super-heroes')
+      queryClient.setQueriesData('super-heroes', (oldQueryData) => {
+        return {
+          ...oldQueryData.data,
+          data: [...oldQueryData.data, newData.data],
+        }
+      })
     },
   })
   return mutation
