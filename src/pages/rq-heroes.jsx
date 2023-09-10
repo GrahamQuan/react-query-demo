@@ -21,9 +21,12 @@ const RqHeroesPage = () => {
     onError,
   })
 
-  const { mutate } = useAddData()
-  const onDone = () => {
-    mutate({ name, alterEgo })
+  const { mutate, mutateAsync } = useAddData()
+  const onDone = async () => {
+    // mutate({ name, alterEgo })
+    await mutateAsync({ name, alterEgo })
+    setName('')
+    setAlterEgo('')
   }
 
   if (isLoading) return <h2>loading...</h2>

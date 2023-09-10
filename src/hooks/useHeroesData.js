@@ -50,6 +50,13 @@ export function useHeroById(id) {
 const addData = (data) => axios.post(heroesApi, data)
 
 export function useAddData() {
-  const mutation = useMutation(addData)
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn: addData,
+    onSuccess: () => {
+      queryClient.invalidateQueries('super-heroes')
+    },
+  })
   return mutation
 }
