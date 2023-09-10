@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { useQuery } from 'react-query'
 
-import { heroesApi } from '../network'
+import { heroesApi, heroByIdApi } from '../network'
 
 const getData = () => axios.get(heroesApi)
 
-export default function useHeroesData({ onSuccess, onError }) {
+export function useHeroesData({ onSuccess, onError }) {
   return useQuery({
     queryKey: 'super-heroes',
     queryFn: getData,
@@ -23,5 +23,14 @@ export default function useHeroesData({ onSuccess, onError }) {
       }))
       return { data: formattedData }
     },
+  })
+}
+
+const getDataById = (id) => () => axios.get(heroByIdApi(id))
+
+export function useHeroById(id) {
+  return useQuery({
+    queryKey: ['super-heroes', id],
+    queryFn: getDataById(id),
   })
 }
