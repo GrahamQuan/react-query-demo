@@ -14,16 +14,6 @@
       "id": 3,
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
-    },
-    {
-      "name": "11",
-      "alterEgo": "22",
-      "id": 4
-    },
-    {
-      "name": "22",
-      "alterEgo": "33",
-      "id": 5
     }
   ],
   "friends": [
@@ -49,11 +39,7 @@
   "channels": [
     {
       "id": "some-channel-id",
-      "courses": [
-        "react",
-        "vue",
-        "angular"
-      ]
+      "courses": ["react", "vue", "angular"]
     }
   ],
   "colors": [
