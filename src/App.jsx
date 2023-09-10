@@ -8,6 +8,7 @@ import TraditionalHeroesPage from './pages/traditional-heroes'
 import RQHeroesPage from './pages/rq-heroes'
 import RqHeroesDetailPage from './pages/rq-heroes-detail'
 import ParallelPage from './pages/parallel'
+import DependentQueries from './pages/dependent-queries'
 
 const queryClient = new QueryClient()
 
@@ -30,6 +31,9 @@ function App() {
               <li>
                 <Link to="/parallel">Parallel</Link>
               </li>
+              <li>
+                <Link to="/dependent-queries">DependentQueries</Link>
+              </li>
             </ul>
           </nav>
           <Routes>
@@ -43,6 +47,10 @@ function App() {
             <Route
               path="/parallel"
               element={<ParallelPage heroIds={[1, 3]} />}
+            />
+            <Route
+              path="/dependent-queries"
+              element={<DependentQueries email="johndoe@example.com" />}
             />
           </Routes>
         </div>
