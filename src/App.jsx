@@ -10,6 +10,7 @@ import RqHeroesDetailPage from './pages/rq-heroes-detail'
 import ParallelPage from './pages/parallel'
 import DependentQueries from './pages/dependent-queries'
 import PaginationPage from './pages/pagination'
+import InfiniteQueryPage from './pages/infinite-query'
 
 const queryClient = new QueryClient()
 
@@ -24,10 +25,10 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/super-heroes">Traditional Super Heroes</Link>
+                <Link to="/super-heroes">Traditional</Link>
               </li>
               <li>
-                <Link to="/rq-super-heroes">RQ Super Heroes</Link>
+                <Link to="/rq-super-heroes">RQ</Link>
               </li>
               <li>
                 <Link to="/parallel">Parallel</Link>
@@ -36,7 +37,7 @@ function App() {
                 <Link to="/dependent-queries">DependentQueries</Link>
               </li>
               <li>
-                <Link to="/pagination">pagination</Link>
+                <Link to="/infinite">infinite</Link>
               </li>
             </ul>
           </nav>
@@ -57,6 +58,7 @@ function App() {
               element={<DependentQueries email="johndoe@example.com" />}
             />
             <Route path="/pagination" element={<PaginationPage />} />
+            <Route path="/infinite" element={<InfiniteQueryPage />} />
           </Routes>
         </div>
       </Router>
