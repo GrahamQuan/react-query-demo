@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient, useMutation } from 'react-query'
 
 import { heroesApi, heroByIdApi } from '../network'
 
@@ -45,4 +45,11 @@ export function useHeroById(id) {
       }
     },
   })
+}
+
+const addData = (data) => axios.post(heroesApi, data)
+
+export function useAddData() {
+  const mutation = useMutation(addData)
+  return mutation
 }

@@ -1,7 +1,12 @@
-import { useHeroesData } from '../hooks/useHeroesData'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+
+import { useHeroesData, useAddData } from '../hooks/useHeroesData'
 
 const RqHeroesPage = () => {
+  const [name, setName] = useState('')
+  const [alterEgo, setAlterEgo] = useState('')
+
   const onSuccess = (data) => {
     console.log('onSuccess', data)
   }
@@ -16,14 +21,33 @@ const RqHeroesPage = () => {
     onError,
   })
 
+  const { mutate } = useAddData()
+  const onDone = () => {
+    mutate({ name, alterEgo })
+  }
+
   if (isLoading) return <h2>loading...</h2>
   if (isError) return <h2>{error?.message}</h2>
 
   return (
     <div>
       <h3>RqHeroesPage</h3>
-      <button onClick={refetch}>refetch</button>
-      <br />
+      <div>
+        <button onClick={refetch}>refetch</button>
+      </div>
+      <div>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          value={alterEgo}
+          onChange={(e) => setAlterEgo(e.target.value)}
+        />
+        <button onClick={onDone}>Done</button>
+      </div>
       {data?.data.map((item) => (
         <div key={item.id}>
           <Link to={`/rq-super-heroes/${item.id}`}>{item.name}</Link>
