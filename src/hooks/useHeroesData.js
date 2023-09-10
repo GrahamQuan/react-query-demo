@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 
 import { heroesApi, heroByIdApi } from '../network'
 
@@ -29,8 +29,20 @@ export function useHeroesData({ onSuccess, onError }) {
 const getDataById = (id) => () => axios.get(heroByIdApi(id))
 
 export function useHeroById(id) {
+  const queryClient = useQueryClient()
+
   return useQuery({
     queryKey: ['super-heroes', id],
     queryFn: getDataById(id),
+    initialData: () => {
+      const hero = queryClient
+        .getQueryData('super-heroes')
+        ?.data?.find((hero) => hero.id === parseInt(id))
+      if (hero) {
+        return { data: hero }
+      } else {
+        return undefined
+      }
+    },
   })
 }
